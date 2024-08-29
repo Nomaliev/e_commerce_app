@@ -9,7 +9,7 @@ class AppHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -18,15 +18,54 @@ class AppHome extends StatelessWidget {
               child: Column(
                 children: [
                   //AppBar
-                  HomeAppBar(),
-                  SizedBox(height: AppSizes.spaceBtwSections),
-                  AppSearchContainer(text: 'Search in Store')
+                  const HomeAppBar(),
+                  const SizedBox(height: AppSizes.spaceBtwSections),
+                  const AppSearchContainer(text: 'Search in Store'),
+                  const SizedBox(height: AppSizes.spaceBtwSections),
+                  Padding(
+                    padding: const EdgeInsets.only(left: AppSizes.defaultSpace),
+                    child: AppSectionHeading(
+                      title: 'Popular Categories',
+                      onPressed: () {},
+                    ),
+                  )
                 ],
               ),
             )
           ],
         ),
       ),
+    );
+  }
+}
+
+class AppSectionHeading extends StatelessWidget {
+  const AppSectionHeading({
+    super.key,
+    required this.title,
+    this.buttonTitle = 'View all',
+    this.textColor,
+    required this.onPressed,
+  });
+  final String title, buttonTitle;
+  final Color? textColor;
+  final bool showActionButton = false;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          title,
+          style: Theme.of(context).textTheme.headlineSmall,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+        ),
+        if (showActionButton)
+          TextButton(onPressed: onPressed, child: Text(buttonTitle))
+      ],
     );
   }
 }
