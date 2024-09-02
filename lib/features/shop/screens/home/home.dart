@@ -31,12 +31,15 @@ class AppHome extends StatelessWidget {
                 ],
               ),
             ),
-            HomeSlidingBanners(
-              banners: [
-                AppImages.promoBanner1,
-                AppImages.promoBanner2,
-                AppImages.promoBanner3,
-              ],
+            Padding(
+              padding: EdgeInsets.all(AppSizes.defaultSpace),
+              child: HomeSlidingBanners(
+                banners: [
+                  AppImages.promoBanner1,
+                  AppImages.promoBanner2,
+                  AppImages.promoBanner3,
+                ],
+              ),
             )
           ],
         ),

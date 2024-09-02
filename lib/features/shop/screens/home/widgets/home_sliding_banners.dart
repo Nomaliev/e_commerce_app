@@ -17,38 +17,36 @@ class HomeSlidingBanners extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
-    return Padding(
-        padding: const EdgeInsets.all(AppSizes.defaultSpace),
-        child: Column(
-          children: [
-            CarouselSlider(
-                items: banners
-                    .map((url) => AppRoundedImage(imageUrl: url))
-                    .toList(),
-                options: CarouselOptions(
-                  viewportFraction: 1,
-                  onPageChanged: (index, _) {
-                    controller.updatePageIndex(index);
-                  },
-                )),
-            const SizedBox(height: AppSizes.spaceBtwItems),
-            Obx(
-              () => Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (var i = 0; i < 3; i++)
-                    AppCircularContainer(
-                        margin: 10,
-                        height: 4,
-                        width: 20,
-                        backgroundColor:
-                            controller.carouselCurrentIndex.value == i
-                                ? AppColors.primary
-                                : AppColors.grey),
-                ],
-              ),
-            )
-          ],
-        ));
+    return Column(
+      children: [
+        CarouselSlider(
+            items: banners
+                .map((url) => AppRoundedImage(imageUrl: url))
+                .toList(),
+            options: CarouselOptions(
+              viewportFraction: 1,
+              onPageChanged: (index, _) {
+                controller.updatePageIndex(index);
+              },
+            )),
+        const SizedBox(height: AppSizes.spaceBtwItems),
+        Obx(
+          () => Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (var i = 0; i < 3; i++)
+                AppCircularContainer(
+                    margin: 10,
+                    height: 4,
+                    width: 20,
+                    backgroundColor:
+                        controller.carouselCurrentIndex.value == i
+                            ? AppColors.primary
+                            : AppColors.grey),
+            ],
+          ),
+        )
+      ],
+    );
   }
 }
