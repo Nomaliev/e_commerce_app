@@ -20,10 +20,10 @@ class HomeSlidingBanners extends StatelessWidget {
     return Column(
       children: [
         CarouselSlider(
-            items: banners
-                .map((url) => AppRoundedImage(imageUrl: url))
-                .toList(),
+            items:
+                banners.map((url) => AppRoundedImage(imageUrl: url)).toList(),
             options: CarouselOptions(
+              autoPlay: true,
               viewportFraction: 1,
               onPageChanged: (index, _) {
                 controller.updatePageIndex(index);
@@ -39,10 +39,9 @@ class HomeSlidingBanners extends StatelessWidget {
                     margin: 10,
                     height: 4,
                     width: 20,
-                    backgroundColor:
-                        controller.carouselCurrentIndex.value == i
-                            ? AppColors.primary
-                            : AppColors.grey),
+                    backgroundColor: controller.carouselCurrentIndex.value == i
+                        ? AppColors.primary
+                        : AppColors.grey),
             ],
           ),
         )

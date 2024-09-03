@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/main_header.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/search.dart';
+import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
+import 'package:t_store/common/widgets/text/section_heading.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_app_bar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_popular_categories.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_sliding_banners.dart';
@@ -13,12 +15,12 @@ class AppHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
             //Header
-            AppMainHeaderContainer(
+            const AppMainHeaderContainer(
               child: Column(
                 children: [
                   //AppBar
@@ -33,18 +35,26 @@ class AppHome extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(AppSizes.defaultSpace),
+              padding: const EdgeInsets.all(AppSizes.defaultSpace),
               child: Column(
                 children: [
-                  HomeSlidingBanners(
+                  const HomeSlidingBanners(
                     banners: [
                       AppImages.promoBanner1,
                       AppImages.promoBanner2,
                       AppImages.promoBanner3,
                     ],
                   ),
-                  SizedBox(height: AppSizes.spaceBtwSections),
-                  ProductCardVertical()
+                  const SizedBox(height: AppSizes.spaceBtwSections),
+                  const AppSectionHeading(
+                    title: 'Popular Products',
+                    showActionButton: true,
+                  ),
+                  const SizedBox(height: AppSizes.spaceBtwItems),
+                  AppGridLayout(
+                    itemCount: 4,
+                    itemBuilder: (_, index) => const ProductCardVertical(),
+                  ),
                 ],
               ),
             )

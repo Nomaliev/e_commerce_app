@@ -5,10 +5,10 @@ import 'package:t_store/utils/constants/colors.dart';
 class ShoppingCounter extends StatelessWidget {
   const ShoppingCounter({
     super.key,
-    required this.iconColor,
+    this.iconColor,
     required this.onPressed,
   });
-  final Color iconColor;
+  final Color? iconColor;
   final VoidCallback onPressed;
 
   @override
@@ -16,10 +16,10 @@ class ShoppingCounter extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-            onPressed: () {},
-            icon: const Icon(
+            onPressed: onPressed,
+            icon: Icon(
               Iconsax.shopping_bag,
-              color: AppColors.white,
+              color: iconColor,
             )),
         Positioned(
           right: 0,

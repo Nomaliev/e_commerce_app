@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class AppRoundedImage extends StatelessWidget {
@@ -11,7 +10,7 @@ class AppRoundedImage extends StatelessWidget {
     this.applyImageRadius = false,
     this.border,
     this.borderRadius = AppSizes.md,
-    this.backgroundColor = AppColors.light,
+    this.backgroundColor,
     this.fit = BoxFit.contain,
     this.padding,
     this.isNetworkImage = false,
@@ -22,7 +21,7 @@ class AppRoundedImage extends StatelessWidget {
   final bool applyImageRadius;
   final BoxBorder? border;
   final double borderRadius;
-  final Color backgroundColor;
+  final Color? backgroundColor;
   final BoxFit fit;
   final EdgeInsetsGeometry? padding;
   final bool isNetworkImage;
