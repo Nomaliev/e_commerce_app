@@ -46,9 +46,10 @@ class AppHome extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: AppSizes.spaceBtwSections),
-                  const AppSectionHeading(
+                  AppSectionHeading(
                     title: 'Popular Products',
                     showActionButton: true,
+                    onPressed: () {},
                   ),
                   const SizedBox(height: AppSizes.spaceBtwItems),
                   AppGridLayout(

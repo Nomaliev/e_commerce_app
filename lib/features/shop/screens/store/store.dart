@@ -49,8 +49,11 @@ class AppStore extends StatelessWidget {
                       const SizedBox(height: AppSizes.spaceBtwSections),
 
                       ///Featured brands
-                      const AppSectionHeading(
-                          title: 'Featured Brands', showActionButton: true),
+                      AppSectionHeading(
+                        title: 'Featured Brands',
+                        showActionButton: true,
+                        onPressed: () {},
+                      ),
                       const SizedBox(height: AppSizes.spaceBtwItems / 1.5),
                       AppGridLayout(
                         mainAxisExtent: 80,
