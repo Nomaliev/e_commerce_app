@@ -86,7 +86,7 @@ class ProductCardVertical extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(left: AppSizes.sm),
                   child: AppProductPriceText(
-                    price: '35',
+                    price: '35.0',
                   ),
                 ),
                 Container(

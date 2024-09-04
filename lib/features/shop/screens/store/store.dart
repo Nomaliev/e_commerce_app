@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
-import 'package:t_store/common/widgets/custom_shapes/container/rounded.dart';
+import 'package:t_store/common/widgets/appbar/tabbar.dart';
+import 'package:t_store/common/widgets/brands/brand_card.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/search.dart';
-import 'package:t_store/common/widgets/images/app_circular_image.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/cart/cart_menu_icon.dart';
-import 'package:t_store/common/widgets/text/brand_title_text_with_verified_icon.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
-import 'package:t_store/utils/constants/enums.dart';
-import 'package:t_store/utils/constants/image_strings.dart';
+import 'package:t_store/features/shop/screens/store/widgets/category_tab.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -19,12 +17,15 @@ class AppStore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final dark = AppHelperFunctions.isDarkMode(context);
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: Text('Store', style: Theme.of(context).textTheme.headlineMedium),
-        actions: [ShoppingCounter(onPressed: () {})],
-      ),
-      body: NestedScrollView(
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+        appBar: CustomAppBar(
+          title:
+              Text('Store', style: Theme.of(context).textTheme.headlineMedium),
+          actions: [ShoppingCounter(onPressed: () {})],
+        ),
+        body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {
             return [
               SliverAppBar(
@@ -55,53 +56,33 @@ class AppStore extends StatelessWidget {
                         mainAxisExtent: 80,
                         itemCount: 4,
                         itemBuilder: (_, index) {
-                          return GestureDetector(
-                            child: AppRoundedContainer(
-                              padding: const EdgeInsets.all(AppSizes.sm),
-                              showBorder: true,
-                              backgroundColor: Colors.transparent,
-                              child: Row(
-                                ///Icon
-                                children: [
-                                  const Flexible(
-                                    child: AppCircularImage(
-                                        image: AppImages.clothIcon),
-                                  ),
-                                  const SizedBox(
-                                      height: AppSizes.spaceBtwItems / 2),
-                                  Expanded(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        const AppBrandTitleTextWithVerifiedIcon(
-                                            title: 'Nike',
-                                            brandTextSize: TextSizes.large),
-                                        Text(
-                                          '256 products',
-                                          overflow: TextOverflow.ellipsis,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelMedium,
-                                        )
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                            ),
-                          );
+                          return const AppBrandCard(showBorder: true);
                         },
                       )
                     ],
                   ),
                 ),
+                bottom: const AppTabBar(
+                  tabs: [
+                    Text('Sports'),
+                    Text('Furniture'),
+                    Text('Electronics'),
+                    Text('Clothes'),
+                    Text('Cosmetics'),
+                  ],
+                ),
               )
             ];
           },
-          body: Container()),
+          body: const TabBarView(children: [
+            StoreCategoryTab(),
+            StoreCategoryTab(),
+            StoreCategoryTab(),
+            StoreCategoryTab(),
+            StoreCategoryTab(),
+          ]),
+        ),
+      ),
     );
   }
 }
