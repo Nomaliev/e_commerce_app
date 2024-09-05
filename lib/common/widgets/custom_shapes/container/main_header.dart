@@ -17,7 +17,6 @@ class AppMainHeaderContainer extends StatelessWidget {
         color: AppColors.primary,
         padding: const EdgeInsets.all(0),
         child: SizedBox(
-          height: 400,
           child: Stack(
             children: [
               Positioned(

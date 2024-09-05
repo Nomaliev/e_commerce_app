@@ -30,7 +30,10 @@ class AppHome extends StatelessWidget {
                   AppSearchContainer(text: 'Search in Store'),
                   SizedBox(height: AppSizes.spaceBtwSections),
                   //Popular Categories
-                  HomePopularCategories()
+                  HomePopularCategories(),
+                  SizedBox(
+                    height: AppSizes.spaceBtwSections,
+                  )
                 ],
               ),
             ),

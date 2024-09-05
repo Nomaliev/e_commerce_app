@@ -6,7 +6,7 @@ import 'package:t_store/utils/helpers/helper_functions.dart';
 class AppCircularImage extends StatelessWidget {
   const AppCircularImage({
     super.key,
-    this.fit = BoxFit.cover,
+    this.fit = BoxFit.contain,
     required this.image,
     this.isNetworkImage = false,
     this.imageColor,
@@ -36,7 +36,7 @@ class AppCircularImage extends StatelessWidget {
           image: isNetworkImage
               ? NetworkImage(image)
               : AssetImage(image) as ImageProvider,
-          color: imageColor ?? (dark ? AppColors.white : AppColors.black)),
+          color: imageColor),
     );
   }
 }
