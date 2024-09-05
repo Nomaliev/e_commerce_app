@@ -14,10 +14,11 @@ class BrandShowCase extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dark = AppHelperFunctions.isDarkMode(context);
     return AppRoundedContainer(
       showBorder: true,
       borderColor: AppColors.darkGrey,
-      backgroundColor: Colors.transparent,
+      backgroundColor: dark ? AppColors.black : AppColors.white,
       padding: const EdgeInsets.all(AppSizes.md),
       margin: const EdgeInsets.only(bottom: AppSizes.spaceBtwItems),
       child: Column(
