@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/images/app_circular_image.dart';
+import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 
@@ -31,7 +33,7 @@ class AppUserProfileTile extends StatelessWidget {
             .apply(color: AppColors.white),
       ),
       trailing: IconButton(
-          onPressed: () {},
+          onPressed: () => Get.to(() => const AppProfileSettings()),
           icon: const Icon(
             Iconsax.edit,
             color: AppColors.white,
