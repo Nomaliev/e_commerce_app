@@ -4,7 +4,7 @@ class AppProductTitleText extends StatelessWidget {
   const AppProductTitleText({
     super.key,
     required this.title,
-    this.smallSize = true,
+    this.smallSize = false,
     this.maxlines = 2,
     this.textAlign,
   });
