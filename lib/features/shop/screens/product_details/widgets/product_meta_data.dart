@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/rounded.dart';
+import 'package:t_store/common/widgets/images/app_circular_image.dart';
 import 'package:t_store/common/widgets/text/brand_title_text_with_verified_icon.dart';
 import 'package:t_store/common/widgets/text/product_price_text.dart';
 import 'package:t_store/common/widgets/text/product_title_text.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/enums.dart';
+import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class ProductMetaData extends StatelessWidget {
@@ -50,17 +52,22 @@ class ProductMetaData extends StatelessWidget {
         ///---Stock Status
         Row(
           children: [
-            Text('Status', style: Theme.of(context).textTheme.titleMedium),
-            const SizedBox(width: AppSizes.spaceBtwItems),
-            const AppProductTitleText(title: '(In Stock)'),
+            Text('Status :', style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(width: AppSizes.spaceBtwItems / 1.5),
+            const AppProductTitleText(title: 'In Stock'),
           ],
         ),
         const SizedBox(height: AppSizes.spaceBtwItems / 1.5),
 
         ///---Brand
-        const AppBrandTitleTextWithVerifiedIcon(
-          title: 'Nike',
-          brandTextSize: TextSizes.medium,
+        const Row(
+          children: [
+            AppCircularImage(image: AppImages.nikeLogo, width: 32, height: 32),
+            AppBrandTitleTextWithVerifiedIcon(
+              title: 'Nike',
+              brandTextSize: TextSizes.medium,
+            )
+          ],
         )
       ],
     );

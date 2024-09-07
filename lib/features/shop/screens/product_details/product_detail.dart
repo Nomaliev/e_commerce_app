@@ -27,6 +27,8 @@ class AppProductDetail extends StatelessWidget {
                 children: [
                   ///---Rating and Share
                   RateAndShare(),
+
+                  ///---Price, Product name, Stock, Brand
                   ProductMetaData(),
                 ],
               ),
