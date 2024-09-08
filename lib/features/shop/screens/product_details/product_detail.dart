@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/features/shop/screens/product_details/widgets/product_attributes.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/product_with_slider.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/rate_and_share.dart';
@@ -30,6 +31,9 @@ class AppProductDetail extends StatelessWidget {
 
                   ///---Price, Product name, Stock, Brand
                   ProductMetaData(),
+
+                  ///---Product Attributes
+                  ProductAttributes()
                 ],
               ),
             )
