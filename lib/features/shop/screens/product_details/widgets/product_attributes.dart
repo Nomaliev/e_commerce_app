@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:t_store/common/widgets/choice_chips/choice_chip.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/rounded.dart';
 import 'package:t_store/common/widgets/text/product_price_text.dart';
 import 'package:t_store/common/widgets/text/product_title_text.dart';
@@ -62,7 +63,36 @@ class ProductAttributes extends StatelessWidget {
                   maxlines: 4)
             ],
           ),
-        )
+        ),
+        const SizedBox(height: AppSizes.spaceBtwItems),
+        const AppSectionHeading(title: 'Colors'),
+        const SizedBox(height: AppSizes.sm),
+        Row(
+          children: [
+            AppChoiceChip(
+                text: 'Green', selected: true, onSelected: (value) {}),
+            AppChoiceChip(
+                text: 'Blue', selected: false, onSelected: (value) {}),
+            AppChoiceChip(
+                text: 'Yellow', selected: false, onSelected: (value) {})
+          ],
+        ),
+        const SizedBox(height: AppSizes.sm),
+        const AppSectionHeading(title: 'Size'),
+        const SizedBox(height: AppSizes.sm),
+        Row(
+          children: [
+            AppChoiceChip(
+                text: 'EU 34', selected: true, onSelected: (value) {}),
+            const SizedBox(width: AppSizes.spaceBtwItems / 2),
+            AppChoiceChip(
+                text: 'EU 36', selected: false, onSelected: (value) {}),
+            const SizedBox(width: AppSizes.spaceBtwItems / 2),
+            AppChoiceChip(
+                text: 'EU 38', selected: false, onSelected: (value) {}),
+          ],
+        ),
+        const SizedBox(height: AppSizes.spaceBtwSections)
       ],
     );
   }
