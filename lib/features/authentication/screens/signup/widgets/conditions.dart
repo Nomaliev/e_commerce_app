@@ -12,10 +12,12 @@ class AppSignUpConditions extends StatelessWidget {
     final dark = AppHelperFunctions.isDarkMode(context);
     return Row(
       children: [
-        SizedBox(
-            height: AppSizes.defaultSpace,
-            width: AppSizes.defaultSpace,
-            child: Checkbox(value: true, onChanged: (value) {})),
+        Expanded(
+          child: SizedBox(
+              height: AppSizes.defaultSpace,
+              width: AppSizes.defaultSpace,
+              child: Checkbox(value: true, onChanged: (value) {})),
+        ),
         const SizedBox(width: AppSizes.spaceBtwItems),
         Text.rich(
           TextSpan(

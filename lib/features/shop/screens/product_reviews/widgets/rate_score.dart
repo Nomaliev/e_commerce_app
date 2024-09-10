@@ -13,7 +13,7 @@ class RateScore extends StatelessWidget {
         Expanded(
             flex: 3,
             child:
-                Text('4.8', style: Theme.of(context).textTheme.displayLarge)),
+                Text('4.7', style: Theme.of(context).textTheme.displayLarge)),
         const Expanded(
           flex: 7,
           child: Column(
