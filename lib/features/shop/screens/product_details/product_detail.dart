@@ -64,15 +64,21 @@ class AppProductDetail extends StatelessWidget {
                   ///---Reviews
                   const Divider(),
                   const SizedBox(height: AppSizes.spaceBtwItems),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const AppSectionHeading(title: 'Reviews(199)'),
-                      IconButton(
-                          onPressed: () {},
-                          icon: const Icon(Iconsax.arrow_right_3))
-                    ],
-                  )
+                  // Row(
+                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //   children: [
+                  //     const AppSectionHeading(title: 'Reviews(199)'),
+                  //     IconButton(
+                  //         onPressed: () {},
+                  //         icon: const Icon(Iconsax.arrow_right_3))
+                  //   ],
+                  // )
+                  ListTile(
+                      contentPadding: EdgeInsets.zero,
+                      trailing: const Icon(Iconsax.arrow_right_3),
+                      onTap: () {},
+                      leading: Text('Reviews',
+                          style: Theme.of(context).textTheme.headlineSmall))
                 ],
               ),
             )
