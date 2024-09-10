@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:readmore/readmore.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
@@ -7,6 +8,7 @@ import 'package:t_store/features/shop/screens/product_details/widgets/product_at
 import 'package:t_store/features/shop/screens/product_details/widgets/product_meta_data.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/product_with_slider.dart';
 import 'package:t_store/features/shop/screens/product_details/widgets/rate_and_share.dart';
+import 'package:t_store/features/shop/screens/product_reviews/product_reviews.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
 class AppProductDetail extends StatelessWidget {
@@ -76,8 +78,10 @@ class AppProductDetail extends StatelessWidget {
                   ListTile(
                       contentPadding: EdgeInsets.zero,
                       trailing: const Icon(Iconsax.arrow_right_3),
-                      onTap: () {},
-                      leading: Text('Reviews',
+                      onTap: () {
+                        Get.to(() => const ProductReviews());
+                      },
+                      leading: Text('Reviews(199)',
                           style: Theme.of(context).textTheme.headlineSmall))
                 ],
               ),
