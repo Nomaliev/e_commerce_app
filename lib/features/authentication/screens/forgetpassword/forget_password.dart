@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/features/authentication/screens/forgetpassword/reset_password.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
@@ -11,7 +12,7 @@ class AppForgetPassword extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: const CustomAppBar(showBackArrow: true),
       body: Padding(
         padding: const EdgeInsets.all(AppSizes.defaultSpace),
         child: Column(
