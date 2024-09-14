@@ -23,7 +23,7 @@ class AppStore extends StatelessWidget {
         appBar: CustomAppBar(
           title:
               Text('Store', style: Theme.of(context).textTheme.headlineMedium),
-          actions: [ShoppingCounter(onPressed: () {})],
+          actions: const [ShoppingCounter()],
         ),
         body: NestedScrollView(
           headerSliverBuilder: (_, innerBoxIsScrolled) {

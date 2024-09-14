@@ -27,10 +27,9 @@ class HomeAppBar extends StatelessWidget {
                   .copyWith(color: AppColors.white))
         ],
       ),
-      actions: [
+      actions: const [
         ShoppingCounter(
           iconColor: AppColors.white,
-          onPressed: () {},
         )
       ],
     );
