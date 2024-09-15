@@ -7,6 +7,7 @@ import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
+import 'package:t_store/features/shop/screens/orders/orders.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
@@ -57,7 +58,9 @@ class AppProfile extends StatelessWidget {
                     icon: Iconsax.bag_tick,
                     title: 'My Orders',
                     subTitle: 'In-progress and completed orders',
-                    onTap: () {}),
+                    onTap: () {
+                      Get.to(() => const AppOrders());
+                    }),
                 AppSettingsMenuTile(
                     icon: Iconsax.bank,
                     title: 'Bank Account',
