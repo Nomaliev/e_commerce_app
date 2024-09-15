@@ -24,9 +24,10 @@ class AppSubCategories extends StatelessWidget {
           padding: const EdgeInsets.all(AppSizes.defaultSpace),
           child: Column(
             children: [
-              AppRoundedImage(imageUrl: AppImages.promoBanner1),
+              const AppRoundedImage(imageUrl: AppImages.promoBanner1),
               const SizedBox(height: AppSizes.spaceBtwSections),
               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   AppSectionHeading(
                     title: 'Sports shirts',
@@ -34,7 +35,15 @@ class AppSubCategories extends StatelessWidget {
                     onPressed: () {},
                   ),
                   const SizedBox(height: AppSizes.spaceBtwItems),
-                  const ProductCardHorizontal()
+                  SizedBox(
+                      height: 122.4,
+                      child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) =>
+                              const ProductCardHorizontal(),
+                          separatorBuilder: (BuildContext context, int index) =>
+                              const SizedBox(width: AppSizes.spaceBtwItems),
+                          itemCount: 4))
                 ],
               )
             ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:t_store/common/styles/shadow_style.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/rounded.dart';
 import 'package:t_store/common/widgets/icons/circular_icon.dart';
 import 'package:t_store/common/widgets/images/app_rounded_image.dart';
@@ -19,16 +18,15 @@ class ProductCardHorizontal extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = AppHelperFunctions.isDarkMode(context);
     return Container(
-      width: 340,
+      width: 310,
       padding: const EdgeInsets.all(1),
       decoration: BoxDecoration(
-          boxShadow: [AppShadowStyle.shadowStyle],
           borderRadius: BorderRadius.circular(AppSizes.productImageRadius),
           color: dark ? AppColors.darkerGrey : AppColors.white),
       child: Row(
         children: [
           AppRoundedContainer(
-            height: 120,
+            height: 180,
             padding: const EdgeInsets.all(AppSizes.sm),
             backgroundColor: dark ? AppColors.dark : AppColors.light,
             child: Stack(
@@ -63,43 +61,50 @@ class ProductCardHorizontal extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(height: AppSizes.spaceBtwItems / 2),
-          Padding(
-            padding: const EdgeInsets.only(left: AppSizes.sm),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const AppProductTitleText(
-                    smallSize: true, title: 'Green Nike Air Shoes'),
-                const SizedBox(height: AppSizes.spaceBtwItems / 2),
-                const AppBrandTitleTextWithVerifiedIcon(title: 'Nike'),
-                const SizedBox(height: AppSizes.spaceBtwItems),
-                Row(
-                  children: [
-                    const Padding(
-                      padding: EdgeInsets.only(left: AppSizes.sm),
-                      child: AppProductPriceText(price: '35.0'),
-                    ),
-                    const SizedBox(width: AppSizes.spaceBtwSections * 3.71),
-                    Container(
-                      decoration: const BoxDecoration(
-                          color: AppColors.dark,
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(AppSizes.cardRadiusMd),
-                              bottomRight: Radius.circular(
-                                  AppSizes.productImageRadius))),
-                      child: const SizedBox(
-                        width: AppSizes.iconLg * 1.2,
-                        height: AppSizes.iconLg * 1.2,
-                        child: Icon(
-                          Iconsax.add,
-                          color: AppColors.white,
+          SizedBox(
+            width: 187.6,
+            child: Padding(
+              padding:
+                  const EdgeInsets.only(top: AppSizes.sm, left: AppSizes.sm),
+              child: Column(
+                children: [
+                  const Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AppProductTitleText(
+                          smallSize: true,
+                          title: 'Green Nike Half Sleeves Shirt'),
+                      SizedBox(height: AppSizes.spaceBtwItems / 2),
+                      AppBrandTitleTextWithVerifiedIcon(title: 'Nike'),
+                    ],
+                  ),
+                  const SizedBox(height: AppSizes.spaceBtwItems),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Flexible(
+                          child: AppProductPriceText(price: '256.0')),
+                      Container(
+                        decoration: const BoxDecoration(
+                            color: AppColors.dark,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(AppSizes.cardRadiusMd),
+                                bottomRight: Radius.circular(
+                                    AppSizes.productImageRadius))),
+                        child: const SizedBox(
+                          width: AppSizes.iconLg * 1.2,
+                          height: AppSizes.iconLg * 1.2,
+                          child: Icon(
+                            Iconsax.add,
+                            color: AppColors.white,
+                          ),
                         ),
-                      ),
-                    )
-                  ],
-                )
-              ],
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
           )
         ],
