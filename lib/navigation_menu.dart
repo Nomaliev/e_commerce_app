@@ -17,13 +17,16 @@ class AppNavigation extends StatelessWidget {
     final dark = AppHelperFunctions.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: Obx(() => BottomNavigationBar(
+              showUnselectedLabels: false,
+              showSelectedLabels: false,
+              backgroundColor: dark ? AppColors.black : AppColors.white,
               type: BottomNavigationBarType.fixed,
               iconSize: 30,
               enableFeedback: false,
               elevation: 0,
               unselectedItemColor:
                   dark ? AppColors.darkGrey : AppColors.darkGrey,
-              selectedItemColor: dark ? AppColors.white : Colors.black,
+              selectedItemColor: AppColors.primary,
               currentIndex: controller.selectedIndex.value,
               onTap: (value) => controller.selectedIndex.value = value,
               items: const [
