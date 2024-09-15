@@ -21,6 +21,7 @@ class AppSuccessScreen extends StatelessWidget {
         padding: AppPaddingStyle.paddingWithAppBarHeight,
         child: Column(
           children: [
+            const SizedBox(height: 140),
             Image(
               image: AssetImage(image),
               width: AppHelperFunctions.screenWidth() * 0.6,

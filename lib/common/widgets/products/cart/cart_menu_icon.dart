@@ -16,7 +16,7 @@ class ShoppingCounter extends StatelessWidget {
     return Stack(
       children: [
         IconButton(
-            onPressed: () => Get.to(()=>const AppCart()),
+            onPressed: () => Get.to(() => const AppCart()),
             icon: Icon(
               Iconsax.shopping_bag,
               color: iconColor,
