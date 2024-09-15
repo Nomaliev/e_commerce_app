@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widgets/text/category_image_text.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
+import 'package:t_store/features/shop/screens/sub_categories/sub_categories.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
 import 'package:t_store/utils/constants/sizes.dart';
@@ -31,7 +33,9 @@ class HomePopularCategories extends StatelessWidget {
                 return AppCategoryImageText(
                   text: 'Shoes',
                   image: AppImages.shoeIcon,
-                  onTap: () {},
+                  onTap: () {
+                    Get.to(() => const AppSubCategories());
+                  },
                 );
               },
             ),
