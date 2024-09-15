@@ -16,25 +16,26 @@ class AppNavigation extends StatelessWidget {
     final controller = Get.put(NavigationController());
     final dark = AppHelperFunctions.isDarkMode(context);
     return Scaffold(
-      bottomNavigationBar: Obx(
-        () => NavigationBar(
-          height: 80,
-          elevation: 0,
-          selectedIndex: controller.selectedIndex.value,
-          backgroundColor: dark ? AppColors.black : AppColors.white,
-          indicatorColor: dark
-              ? AppColors.white.withOpacity(0.1)
-              : AppColors.black.withOpacity(0.1),
-          onDestinationSelected: (index) =>
-              controller.selectedIndex.value = index,
-          destinations: const [
-            NavigationDestination(icon: Icon(Iconsax.home), label: 'Home'),
-            NavigationDestination(icon: Icon(Iconsax.shop), label: 'Store'),
-            NavigationDestination(icon: Icon(Iconsax.heart), label: 'Wishlist'),
-            NavigationDestination(icon: Icon(Iconsax.user), label: 'Profile'),
-          ],
-        ),
-      ),
+      bottomNavigationBar: Obx(() => BottomNavigationBar(
+              type: BottomNavigationBarType.fixed,
+              iconSize: 30,
+              enableFeedback: false,
+              elevation: 0,
+              unselectedItemColor:
+                  dark ? AppColors.darkGrey : AppColors.darkGrey,
+              selectedItemColor: dark ? AppColors.white : Colors.black,
+              currentIndex: controller.selectedIndex.value,
+              onTap: (value) => controller.selectedIndex.value = value,
+              items: [
+                BottomNavigationBarItem(
+                    icon: Icon(Iconsax.home), label: 'Home'),
+                BottomNavigationBarItem(
+                    icon: Icon(Iconsax.shop), label: 'Store'),
+                BottomNavigationBarItem(
+                    icon: Icon(Iconsax.heart), label: 'Wishlist'),
+                BottomNavigationBarItem(
+                    icon: Icon(Iconsax.user), label: 'Profie')
+              ])),
       body: Obx(() => controller.screens[controller.selectedIndex.value]),
     );
   }

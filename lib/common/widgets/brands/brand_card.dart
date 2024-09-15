@@ -21,7 +21,7 @@ class AppBrandCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final dark = AppHelperFunctions.isDarkMode(context);
     return GestureDetector(
-      onTap: () {},
+      onTap: onTap,
       child: AppRoundedContainer(
         padding: const EdgeInsets.all(AppSizes.sm),
         showBorder: showBorder,
@@ -31,7 +31,7 @@ class AppBrandCard extends StatelessWidget {
           children: [
             Flexible(
               child: AppCircularImage(
-                image: AppImages.clothIcon,
+                image: AppImages.nikeLogo,
                 imageColor: dark ? AppColors.white : AppColors.black,
               ),
             ),
