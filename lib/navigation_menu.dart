@@ -26,7 +26,7 @@ class AppNavigation extends StatelessWidget {
               selectedItemColor: dark ? AppColors.white : Colors.black,
               currentIndex: controller.selectedIndex.value,
               onTap: (value) => controller.selectedIndex.value = value,
-              items: [
+              items: const [
                 BottomNavigationBarItem(
                     icon: Icon(Iconsax.home), label: 'Home'),
                 BottomNavigationBarItem(
