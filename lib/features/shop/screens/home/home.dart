@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/main_header.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/search.dart';
 import 'package:t_store/common/widgets/layouts/grid_layout.dart';
 import 'package:t_store/common/widgets/products/product_cards/product_card_vertical.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
+import 'package:t_store/features/shop/screens/all_products/all_products.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_app_bar.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_popular_categories.dart';
 import 'package:t_store/features/shop/screens/home/widgets/home_sliding_banners.dart';
@@ -52,7 +54,9 @@ class AppHome extends StatelessWidget {
                   AppSectionHeading(
                     title: 'Popular Products',
                     showActionButton: true,
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(() => const AppAllProducts());
+                    },
                   ),
                   const SizedBox(height: AppSizes.spaceBtwItems),
                   AppGridLayout(
