@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/features/authentication/controllers/signup/signup_controller.dart';
-import 'package:t_store/features/authentication/screens/signup/email_verification.dart';
 import 'package:t_store/features/authentication/screens/signup/widgets/conditions.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
@@ -69,14 +68,40 @@ class AppSignUpForm extends StatelessWidget {
                 labelText: AppTexts.phoneNo, prefixIcon: Icon(Iconsax.call)),
           ),
           const SizedBox(height: AppSizes.spaceBtwItems),
-          TextFormField(
-            validator: (value) => AppValidator.validatePassword(value),
-            controller: controller.password,
-            obscureText: true,
-            decoration: const InputDecoration(
-                labelText: AppTexts.password,
-                prefixIcon: Icon(Iconsax.password_check),
-                suffixIcon: Icon(Iconsax.eye_slash)),
+          Obx(
+            () => TextFormField(
+              validator: (value) => AppValidator.validatePassword(value),
+              controller: controller.password,
+              obscureText: controller.hidePassword.value,
+              decoration: InputDecoration(
+                  labelText: AppTexts.password,
+                  prefixIcon: const Icon(Iconsax.password_check),
+                  suffixIcon: IconButton(
+                    icon: controller.hidePassword.value
+                        ? const Icon(Iconsax.eye_slash)
+                        : const Icon(Iconsax.eye),
+                    onPressed: () => controller.hidePassword.value =
+                        !controller.hidePassword.value,
+                  )),
+            ),
+          ),
+          const SizedBox(height: AppSizes.spaceBtwItems),
+          Obx(
+            () => TextFormField(
+              validator: (value) => AppValidator.validatePassword(value),
+              controller: controller.passwordConfirm,
+              obscureText: controller.hideConfirmPassword.value,
+              decoration: InputDecoration(
+                  labelText: AppTexts.passwordConfirm,
+                  prefixIcon: const Icon(Iconsax.password_check),
+                  suffixIcon: IconButton(
+                    icon: controller.hideConfirmPassword.value
+                        ? const Icon(Iconsax.eye_slash)
+                        : const Icon(Iconsax.eye),
+                    onPressed: () => controller.hideConfirmPassword.value =
+                        !controller.hideConfirmPassword.value,
+                  )),
+            ),
           ),
           const SizedBox(height: AppSizes.spaceBtwSections),
           const AppSignUpConditions(),
@@ -84,7 +109,7 @@ class AppSignUpForm extends StatelessWidget {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-                onPressed: () => controller.signup,
+                onPressed: () => controller.signup(),
                 child: const Text(AppTexts.createAccount)),
           ),
         ],

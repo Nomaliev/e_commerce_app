@@ -3,20 +3,35 @@ import 'package:lottie/lottie.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 
-class AppAnimationLoader extends StatelessWidget {
-  const AppAnimationLoader(
-      {Key? key,
-      required this.text,
-      required this.animation,
-      this.showAction = false,
-      this.actionText,
-      this.actionOnPressed})
-      : super(key: key);
+/// A widget for displaying an animated loading indicator with optional text and action button.
+class AppAnimationLoaderWidget extends StatelessWidget {
+  /// Default constructor for the TAnimationLoaderWidget.
+  ///
+  /// Parameters:
+  ///   - text: The text to be displayed below the animation.
+  ///   - animation: The path to the Lottie animation file.
+  ///   - showAction: Whether to show an action button below the text.
+  ///   - actionText: The text to be displayed on the action button.
+  ///   - onActionPressed: Callback function to be executed when the action button is pressed.
+  const AppAnimationLoaderWidget({
+    super.key,
+    required this.text,
+    required this.animation,
+    this.showAction = false,
+    this.actionText,
+    this.onActionPressed,
+    this.height,
+    this.width,
+    this.style,
+  });
+
   final String text;
+  final TextStyle? style;
   final String animation;
   final bool showAction;
   final String? actionText;
-  final VoidCallback? actionOnPressed;
+  final VoidCallback? onActionPressed;
+  final double? height, width;
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +40,24 @@ class AppAnimationLoader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Lottie.asset(animation,
-              width: MediaQuery.of(context).size.width * 0.8),
+              height: height ?? MediaQuery.of(context).size.height * 0.5,
+              width: width), // Display Lottie animation
           const SizedBox(height: AppSizes.defaultSpace),
-          Text(text,
-              style: Theme.of(context).textTheme.bodyMedium,
-              textAlign: TextAlign.center),
+          Text(
+            text,
+            style: style ?? Theme.of(context).textTheme.bodyMedium,
+            textAlign: TextAlign.center,
+          ),
           const SizedBox(height: AppSizes.defaultSpace),
           showAction
               ? SizedBox(
                   width: 250,
                   child: OutlinedButton(
-                    onPressed: actionOnPressed,
+                    onPressed: onActionPressed,
+                    style: OutlinedButton.styleFrom(
+                        backgroundColor: AppColors.dark),
                     child: Text(
-                      actionText == null ? '' : actionText!,
+                      actionText!,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium!
@@ -45,7 +65,7 @@ class AppAnimationLoader extends StatelessWidget {
                     ),
                   ),
                 )
-              : const SizedBox()
+              : const SizedBox(),
         ],
       ),
     );

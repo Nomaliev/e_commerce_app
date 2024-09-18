@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:t_store/features/authentication/controllers/signup/signup_controller.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
@@ -9,6 +11,7 @@ class AppSignUpConditions extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = SignupController.instance;
     final dark = AppHelperFunctions.isDarkMode(context);
     return Row(
       children: [
@@ -16,7 +19,12 @@ class AppSignUpConditions extends StatelessWidget {
           child: SizedBox(
               height: AppSizes.defaultSpace,
               width: AppSizes.defaultSpace,
-              child: Checkbox(value: true, onChanged: (value) {})),
+              child: Obx(
+                () => Checkbox(
+                    value: controller.privacyPolicy.value,
+                    onChanged: (value) => controller.privacyPolicy.value =
+                        !controller.privacyPolicy.value),
+              )),
         ),
         const SizedBox(width: AppSizes.spaceBtwItems),
         Text.rich(

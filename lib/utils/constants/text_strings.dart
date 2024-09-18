@@ -25,6 +25,7 @@ class AppTexts {
   static const String lastName = "Last Name";
   static const String email = "E-Mail";
   static const String password = "Password";
+  static const String passwordConfirm = "Confirm Password";
   static const String newPassword = "New Password";
   static const String username = "Username";
   static const String phoneNo = "Phone Number";
