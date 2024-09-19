@@ -31,11 +31,15 @@ class SignupController extends GetxController {
 
       //Check Internet Connectivity
       final isConnected = await NetworkManager.instance.isConnected();
-      if (!isConnected) return;
+      if (!isConnected) {
+        AppFullScreenLoader.stopLoading();
+        return;
+      }
 
       //Form Validation
-      // ignore: dead_code
-      if (signupFormKey.currentState!.validate()) return;
+      if (signupFormKey.currentState!.validate()) {
+        AppFullScreenLoader.stopLoading();
+      }
 
       //Privacy Policy Check
       if (!privacyPolicy.value) {
@@ -43,6 +47,7 @@ class SignupController extends GetxController {
             title: 'Accept Privacy Policy',
             message:
                 'In order to create account, you must have to read and accept Privacy Policy & Terms of Use.');
+        AppFullScreenLoader.stopLoading();
         return;
       }
 
@@ -70,7 +75,7 @@ class SignupController extends GetxController {
           title: 'Congratulations',
           message: 'Your account has been created! Verify email to continue');
 
-      Get.to(const AppEmailVerification());
+      Get.offAll(() => const AppEmailVerification());
     } catch (e) {
       AppFullScreenLoader.stopLoading();
       AppLoaders.errorSnackBar(title: 'Error', message: e.toString());
