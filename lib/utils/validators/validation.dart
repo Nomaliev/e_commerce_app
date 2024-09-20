@@ -1,3 +1,6 @@
+import 'package:get/get.dart';
+import 'package:t_store/features/authentication/controllers/signup/signup_controller.dart';
+
 class AppValidator {
   static String? validateEmptyField(String? fieldName, String? value) {
     if (value == null || value.isEmpty) {
@@ -49,6 +52,40 @@ class AppValidator {
     return null;
   }
 
+  static String? validatePasswordConfirm(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Password is required.';
+    }
+
+    // Check for minimum password length
+    if (value.length < 6) {
+      return 'Password must be at least 6 characters long.';
+    }
+
+    // Check for uppercase letters
+    if (!value.contains(RegExp(r'[A-Z]'))) {
+      return 'Password must contain at least one uppercase letter.';
+    }
+
+    // Check for numbers
+    if (!value.contains(RegExp(r'[0-9]'))) {
+      return 'Password must contain at least one number.';
+    }
+
+    // Check for special characters
+    if (!value.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'))) {
+      return 'Password must contain at least one special character.';
+    }
+
+    //Check if the passwords match
+    if (Get.put(SignupController()).password.text.trim() !=
+        Get.put(SignupController()).passwordConfirm.text.trim()) {
+      return "Passwords don't match";
+    }
+
+    return null;
+  }
+
   static String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
       return 'Phone number is required.';
@@ -63,6 +100,4 @@ class AppValidator {
 
     return null;
   }
-
-// Add more custom validators as needed for your specific requirements.
 }

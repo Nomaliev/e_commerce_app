@@ -37,8 +37,9 @@ class SignupController extends GetxController {
       }
 
       //Form Validation
-      if (signupFormKey.currentState!.validate()) {
+      if (!signupFormKey.currentState!.validate()) {
         AppFullScreenLoader.stopLoading();
+        return;
       }
 
       //Privacy Policy Check

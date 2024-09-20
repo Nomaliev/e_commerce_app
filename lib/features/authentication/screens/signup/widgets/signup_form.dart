@@ -88,7 +88,7 @@ class AppSignUpForm extends StatelessWidget {
           const SizedBox(height: AppSizes.spaceBtwItems),
           Obx(
             () => TextFormField(
-              validator: (value) => AppValidator.validatePassword(value),
+              validator: (value) => AppValidator.validatePasswordConfirm(value),
               controller: controller.passwordConfirm,
               obscureText: controller.hideConfirmPassword.value,
               decoration: InputDecoration(
@@ -105,9 +105,6 @@ class AppSignUpForm extends StatelessWidget {
           ),
           const SizedBox(height: AppSizes.spaceBtwSections),
           const AppSignUpConditions(),
-          if (controller.password.text.trim() !=
-              controller.passwordConfirm.text.trim())
-            const SizedBox(height: 60),
           const SizedBox(height: AppSizes.spaceBtwSections),
           SizedBox(
             width: double.infinity,
