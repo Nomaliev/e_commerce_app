@@ -53,7 +53,7 @@ class SignupController extends GetxController {
       }
 
       //Register user Firebase authentication and save user data in Firebase
-      final userCredential = await AuthenticationController.instance
+      final userCredential = await AuthenticationRepository.instance
           .registerWithEmailAndPassword(
               email.text.trim(), password.text.trim());
 
@@ -76,7 +76,7 @@ class SignupController extends GetxController {
           title: 'Congratulations',
           message: 'Your account has been created! Verify email to continue');
 
-      Get.offAll(() => const AppEmailVerification());
+      Get.offAll(() => AppEmailVerification(email: email.text.trim()));
     } catch (e) {
       AppFullScreenLoader.stopLoading();
       AppLoaders.errorSnackBar(title: 'Error', message: e.toString());

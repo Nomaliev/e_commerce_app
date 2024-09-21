@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:t_store/common/styles/padding_style.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
@@ -22,10 +23,7 @@ class AppSuccessScreen extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 140),
-            Image(
-              image: AssetImage(image),
-              width: AppHelperFunctions.screenWidth() * 0.6,
-            ),
+            Lottie.asset(image, width: AppHelperFunctions.screenWidth() * 0.6),
             const SizedBox(height: AppSizes.spaceBtwSections),
             Text(title,
                 style: Theme.of(context).textTheme.headlineMedium,

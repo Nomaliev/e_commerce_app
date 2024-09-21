@@ -17,7 +17,7 @@ Future<void> main() async {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   //initialize firebase
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
-      .then((FirebaseApp value) => Get.put(AuthenticationController()));
+      .then((FirebaseApp value) => Get.put(AuthenticationRepository()));
   //initialize authentication
   runApp(const App());
 }
