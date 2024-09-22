@@ -26,9 +26,9 @@ class AuthenticationRepository extends GetxController {
     final user = _auth.currentUser;
     if (user != null) {
       if (user.emailVerified) {
-        Get.off(() => const AppNavigation());
+        Get.offAll(() => const AppNavigation());
       } else {
-        Get.off(AppEmailVerification(email: _auth.currentUser?.email));
+        Get.offAll(AppEmailVerification(email: _auth.currentUser?.email));
       }
     } else {
       deviceStorage.writeIfNull('FirstTime', true);
@@ -42,6 +42,24 @@ class AuthenticationRepository extends GetxController {
       String email, String password) async {
     try {
       return await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw AppFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw AppFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const FormatException();
+    } on PlatformException catch (e) {
+      throw AppPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<UserCredential> loginWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
       throw AppFirebaseAuthException(e.code).message;

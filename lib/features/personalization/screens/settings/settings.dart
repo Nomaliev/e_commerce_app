@@ -6,6 +6,7 @@ import 'package:t_store/common/widgets/custom_shapes/container/main_header.dart'
 import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
+import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/shop/screens/orders/orders.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -114,7 +115,9 @@ class AppProfile extends StatelessWidget {
                 SizedBox(
                     width: double.infinity,
                     child: OutlinedButton(
-                        onPressed: () {}, child: const Text('Logout'))),
+                        onPressed: () =>
+                            AuthenticationRepository.instance.logout(),
+                        child: const Text('Logout'))),
                 const SizedBox(height: AppSizes.spaceBtwSections * 2.5)
               ],
             ),
