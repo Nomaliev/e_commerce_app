@@ -62,7 +62,11 @@ class AppLoginForm extends StatelessWidget {
                             value: controller.rememberMe.value,
                             onChanged: (value) => controller.rememberMe.value =
                                 !controller.rememberMe.value))),
-                    const Text(AppTexts.rememberMe)
+                    GestureDetector(
+                      child: const Text(AppTexts.rememberMe),
+                      onTap: () => controller.rememberMe.value =
+                          !controller.rememberMe.value,
+                    )
                   ],
                 ),
                 TextButton(

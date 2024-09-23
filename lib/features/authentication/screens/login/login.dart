@@ -9,7 +9,7 @@ import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
 
 class AppLoginScreen extends StatelessWidget {
-  const AppLoginScreen({Key? key}) : super(key: key);
+  const AppLoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

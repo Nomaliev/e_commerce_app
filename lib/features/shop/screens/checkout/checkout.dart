@@ -53,7 +53,7 @@ class AppCheckoutOrder extends StatelessWidget {
           padding: const EdgeInsets.all(AppSizes.defaultSpace),
           child: ElevatedButton(
               onPressed: () {
-                Get.to(() => const CheckoutSuccess());
+                Get.to(const CheckoutSuccess());
               },
               child: const Text('Checkout \$256.0')),
         ));

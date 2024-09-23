@@ -51,7 +51,6 @@ class SignupController extends GetxController {
         AppFullScreenLoader.stopLoading();
         return;
       }
-
       //Register user Firebase authentication and save user data in Firebase
       final userCredential = await AuthenticationRepository.instance
           .registerWithEmailAndPassword(
