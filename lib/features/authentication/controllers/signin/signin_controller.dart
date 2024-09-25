@@ -58,4 +58,22 @@ class LoginController extends GetxController {
       AppLoaders.errorSnackBar(title: 'Error', message: e.toString());
     }
   }
+
+  Future<void> googleSignIn() async {
+    try {
+      AppFullScreenLoader.openLoadingDialog(
+          'We are logging you in...', AppImages.docerAnimation);
+
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        AppFullScreenLoader.stopLoading();
+        return;
+      }
+
+      final userCredentials =
+          await AuthenticationRepository.instance.signInWithGoogle();
+    } catch (e) {
+      AppLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    }
+  }
 }
