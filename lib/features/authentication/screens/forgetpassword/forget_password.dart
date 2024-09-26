@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
+import 'package:t_store/features/authentication/controllers/signin/password_reset.controller.dart';
 import 'package:t_store/features/authentication/screens/forgetpassword/reset_password.dart';
 import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/constants/text_strings.dart';
+import 'package:t_store/utils/validators/validation.dart';
 
 class AppForgetPassword extends StatelessWidget {
   const AppForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(PasswordResetController());
     return Scaffold(
       appBar: const CustomAppBar(showBackArrow: true),
       body: Padding(
@@ -26,16 +29,21 @@ class AppForgetPassword extends StatelessWidget {
             Text(AppTexts.forgetPasswordSubTitle,
                 style: Theme.of(context).textTheme.labelMedium),
             const SizedBox(height: AppSizes.spaceBtwSections * 2),
-            TextFormField(
-              decoration: const InputDecoration(
-                  labelText: AppTexts.email,
-                  prefixIcon: Icon(Iconsax.direct_right)),
+            Form(
+              key: controller.resetPasswordFormKey,
+              child: TextFormField(
+                controller: controller.email,
+                validator: (value) => AppValidator.validateEmail(value),
+                decoration: const InputDecoration(
+                    labelText: AppTexts.email,
+                    prefixIcon: Icon(Iconsax.direct_right)),
+              ),
             ),
             const SizedBox(height: AppSizes.spaceBtwSections),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                  onPressed: () => Get.off(() => const AppResetPassword()),
+                  onPressed: () => controller.sendPasswordResetLink(),
                   child: const Text(AppTexts.submit)),
             )
           ],

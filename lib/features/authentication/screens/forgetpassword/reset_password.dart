@@ -7,7 +7,8 @@ import 'package:t_store/utils/constants/text_strings.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class AppResetPassword extends StatelessWidget {
-  const AppResetPassword({super.key});
+  const AppResetPassword({super.key, required this.email});
+  final String? email;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +30,7 @@ class AppResetPassword extends StatelessWidget {
                   image: const AssetImage(AppImages.deliveredEmailIllustration),
                   width: AppHelperFunctions.screenWidth() * 0.6),
               const SizedBox(height: AppSizes.spaceBtwSections),
+              Text(email ?? ''),
               Text(AppTexts.changeYourPasswordTitle,
                   style: Theme.of(context).textTheme.headlineMedium,
                   textAlign: TextAlign.center),
