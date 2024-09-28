@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:t_store/features/authentication/controllers/signin/password_reset.controller.dart';
 import 'package:t_store/features/authentication/screens/login/login.dart';
 import 'package:t_store/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:t_store/features/authentication/screens/signup/email_verification.dart';
@@ -17,6 +16,7 @@ import 'package:t_store/utils/exceptions/platform_exceptions.dart';
 class AuthenticationRepository extends GetxController {
   static AuthenticationRepository get instance => Get.find();
   final _auth = FirebaseAuth.instance;
+  User? get authUser => _auth.currentUser;
   final deviceStorage = GetStorage();
   @override
   void onReady() {

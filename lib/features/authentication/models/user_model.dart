@@ -16,17 +16,6 @@ class UserModel {
   String phoneNumber;
   String profilePicture;
 
-  Map<String, dynamic> toJson() {
-    return {
-      'FirstName': firstName,
-      'LastName': lastName,
-      'Username': username,
-      'Email': email,
-      'PhoneNumber': phoneNumber,
-      'ProfilePicture': profilePicture,
-    };
-  }
-
   String get fullName => '$firstName $lastName';
   static List<String> nameParts(fullName) => fullName.split(' ');
   static String generateUsername(fullName) {
@@ -36,5 +25,25 @@ class UserModel {
     String camelCaseUsername = '$firstName$lastName';
     String usernameWithPrefix = 'tab_$camelCaseUsername';
     return usernameWithPrefix;
+  }
+
+  static UserModel empty() => UserModel(
+      id: '',
+      firstName: '',
+      lastName: '',
+      username: '',
+      email: '',
+      phoneNumber: '',
+      profilePicture: '');
+
+  Map<String, dynamic> toJson() {
+    return {
+      'FirstName': firstName,
+      'LastName': lastName,
+      'Username': username,
+      'Email': email,
+      'PhoneNumber': phoneNumber,
+      'ProfilePicture': profilePicture,
+    };
   }
 }
