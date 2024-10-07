@@ -7,6 +7,22 @@ import 'package:t_store/utils/popups/loaders.dart';
 class UserController extends GetxController {
   static UserController get instance => Get.find();
   final userRepository = Get.put(UserRepository());
+  var user = UserModel.empty().obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUserRecord();
+  }
+
+  Future<void> fetchUserRecord() async {
+    try {
+      final user = await userRepository.fetchUserData();
+      this.user(user);
+    } catch (e) {
+      user(UserModel.empty());
+    }
+  }
 
   //Save user record from any registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {

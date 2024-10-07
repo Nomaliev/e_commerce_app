@@ -28,12 +28,65 @@ class UserRepository extends GetxController {
   }
 
   //Fetch user data from FireStore
-  Future<void> fetchUserData() async {
+  Future<UserModel> fetchUserData() async {
+    try {
+      final documentSnaphot = await _db
+          .collection('Users')
+          .doc(AuthenticationRepository.instance.authUser?.uid)
+          .get();
+      if (documentSnaphot.exists) {
+        return UserModel.fromSnapshot(documentSnaphot);
+      } else {
+        return UserModel.empty();
+      }
+    } on FirebaseException catch (e) {
+      throw AppFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const FormatException();
+    } on PlatformException catch (e) {
+      throw AppPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<void> updateUserData(UserModel updatedUser) async {
+    try {
+      await _db
+          .collection('Users')
+          .doc(updatedUser.id)
+          .update(updatedUser.toJson());
+    } on FirebaseException catch (e) {
+      throw AppFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const FormatException();
+    } on PlatformException catch (e) {
+      throw AppPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<void> updateSingleField(Map<String, dynamic> json) async {
     try {
       await _db
           .collection('Users')
           .doc(AuthenticationRepository.instance.authUser?.uid)
-          .get();
+          .update(json);
+    } on FirebaseException catch (e) {
+      throw AppFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const FormatException();
+    } on PlatformException catch (e) {
+      throw AppPlatformException(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
+
+  Future<void> removeUserData(String userId) async {
+    try {
+      await _db.collection('Users').doc(userId).delete();
     } on FirebaseException catch (e) {
       throw AppFirebaseException(e.code).message;
     } on FormatException catch (_) {
