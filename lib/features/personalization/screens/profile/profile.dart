@@ -49,7 +49,7 @@ class AppProfileSettings extends StatelessWidget {
               ProfileMenu(
                   title: 'Name',
                   value: controller.user.value.fullName,
-                  onTap: () => Get.to(() => const ChangeName())),
+                  onTap: () => Get.off(() => const ChangeName())),
               ProfileMenu(
                   title: 'Username',
                   value: controller.user.value.username,
