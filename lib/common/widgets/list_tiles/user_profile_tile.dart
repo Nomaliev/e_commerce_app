@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/images/app_circular_image.dart';
+import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/utils/constants/colors.dart';
 import 'package:t_store/utils/constants/image_strings.dart';
@@ -13,20 +14,21 @@ class AppUserProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return ListTile(
       leading: const AppCircularImage(
         image: AppImages.user,
         padding: 0,
       ),
       title: Text(
-        'Tabriz Nomaliyev',
+        controller.user.value.fullName,
         style: Theme.of(context)
             .textTheme
             .headlineSmall!
             .apply(color: AppColors.white),
       ),
       subtitle: Text(
-        'nomaliev04@gmail.com',
+        controller.user.value.email,
         style: Theme.of(context)
             .textTheme
             .bodyMedium!

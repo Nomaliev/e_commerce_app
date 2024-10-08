@@ -8,6 +8,7 @@ class UserController extends GetxController {
   static UserController get instance => Get.find();
   final userRepository = Get.put(UserRepository());
   var user = UserModel.empty().obs;
+  final loadingShimmer = false.obs;
 
   @override
   void onInit() {
@@ -17,10 +18,13 @@ class UserController extends GetxController {
 
   Future<void> fetchUserRecord() async {
     try {
+      loadingShimmer.value = true;
       final user = await userRepository.fetchUserData();
       this.user(user);
     } catch (e) {
       user(UserModel.empty());
+    } finally {
+      loadingShimmer.value = false;
     }
   }
 

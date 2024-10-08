@@ -68,5 +68,5 @@ class AppTexts {
 
   // -- Home
   static const String homeAppbarTitle = "Good day for shopping";
-  static const String homeAppbarSubTitle = "Tabriz Nomaliyev";
+  static const String homeAppbarSubTitle = "Tabriz";
 }
