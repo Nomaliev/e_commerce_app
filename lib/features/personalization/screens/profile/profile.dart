@@ -4,6 +4,7 @@ import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/images/app_circular_image.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
+import 'package:t_store/features/personalization/controllers/re_authenticate_controller.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/personalization/screens/profile/widgets/change_name.dart';
 import 'package:t_store/features/personalization/screens/profile/widgets/profile_menu.dart';
@@ -78,7 +79,9 @@ class AppProfileSettings extends StatelessWidget {
               const Divider(),
               const SizedBox(height: AppSizes.spaceBtwItems),
               TextButton(
-                  onPressed: () {},
+                  // ignore: void_checks
+                  onPressed: () => Get.put(ReAuthenticateController())
+                      .deleteAccountWarningPopup(),
                   child: const Text(
                     'Close Account',
                     style: TextStyle(color: Colors.red),
