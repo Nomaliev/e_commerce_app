@@ -31,24 +31,27 @@ class UserController extends GetxController {
   //Save user record from any registration provider
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        //Convert name to first and last name
-        final nameParts =
-            UserModel.nameParts(userCredentials.user?.displayName);
-        final username =
-            UserModel.generateUsername(userCredentials.user?.displayName);
+      await fetchUserRecord();
+      if (user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          //Convert name to first and last name
+          final nameParts =
+              UserModel.nameParts(userCredentials.user?.displayName);
+          final username =
+              UserModel.generateUsername(userCredentials.user?.displayName);
 
-        //Convert data
-        final user = UserModel(
-            id: userCredentials.user!.uid,
-            firstName: nameParts[0],
-            lastName: nameParts.length > 1 ? nameParts.sublist(1).join() : '',
-            username: username,
-            email: userCredentials.user!.email ?? '',
-            phoneNumber: userCredentials.user!.phoneNumber ?? '',
-            profilePicture: userCredentials.user!.photoURL ?? '');
+          //Convert data
+          final user = UserModel(
+              id: userCredentials.user!.uid,
+              firstName: nameParts[0],
+              lastName: nameParts.length > 1 ? nameParts.sublist(1).join() : '',
+              username: username,
+              email: userCredentials.user!.email ?? '',
+              phoneNumber: userCredentials.user!.phoneNumber ?? '',
+              profilePicture: userCredentials.user!.photoURL ?? '');
 
-        await userRepository.saveUserData(user);
+          await userRepository.saveUserData(user);
+        }
       }
     } catch (e) {
       AppLoaders.warningSnackBar(
