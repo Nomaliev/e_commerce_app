@@ -85,4 +85,6 @@ class UserController extends GetxController {
       ppLoading.value = false;
     }
   }
+
+  void changeTheme() {}
 }
