@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:t_store/data/repositories/user/user_repo.dart';
 import 'package:t_store/features/authentication/models/user_model.dart';
 import 'package:t_store/utils/popups/loaders.dart';
@@ -9,6 +10,7 @@ class UserController extends GetxController {
   final userRepository = Get.put(UserRepository());
   var user = UserModel.empty().obs;
   final loadingShimmer = false.obs;
+  final ppLoading = false.obs;
 
   @override
   void onInit() {
@@ -56,6 +58,31 @@ class UserController extends GetxController {
     } catch (e) {
       AppLoaders.warningSnackBar(
           title: 'Data not saved', message: e.toString());
+    }
+  }
+
+  Future<void> uploadProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+      if (image != null) {
+        ppLoading.value = true;
+        final imageUrl =
+            await userRepository.uploadImage('Users/Images/Profile', image);
+
+        final Map<String, dynamic> json = {'ProfilePicture': imageUrl};
+        await userRepository.updateSingleField(json);
+
+        user.value.profilePicture = imageUrl;
+        user.refresh();
+      }
+    } catch (e) {
+      AppLoaders.errorSnackBar(title: 'Error', message: e.toString());
+    } finally {
+      ppLoading.value = false;
     }
   }
 }

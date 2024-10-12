@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/images/app_circular_image.dart';
+import 'package:t_store/common/widgets/shimmers/shimmer.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
 import 'package:t_store/features/personalization/controllers/re_authenticate_controller.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
@@ -34,10 +35,22 @@ class AppProfileSettings extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    const AppCircularImage(
-                        image: AppImages.user, width: 80, height: 80),
+                    Obx(() {
+                      final networkImage = controller.user.value.profilePicture;
+                      final profileImage = networkImage.isNotEmpty
+                          ? networkImage
+                          : AppImages.user;
+                      return controller.ppLoading.value
+                          ? const AppShimmerEffect(
+                              width: 55, height: 55, radius: 55)
+                          : AppCircularImage(
+                              image: profileImage,
+                              width: 80,
+                              height: 80,
+                              isNetworkImage: networkImage.isNotEmpty);
+                    }),
                     TextButton(
-                        onPressed: () {},
+                        onPressed: () => controller.uploadProfilePicture(),
                         child: const Text('Change Profile Picture'))
                   ],
                 ),

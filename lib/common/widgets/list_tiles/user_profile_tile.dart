@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/images/app_circular_image.dart';
+import 'package:t_store/common/widgets/shimmers/shimmer.dart';
 import 'package:t_store/features/personalization/controllers/user_controller.dart';
 import 'package:t_store/features/personalization/screens/profile/profile.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -16,10 +17,17 @@ class AppUserProfileTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final controller = UserController.instance;
     return ListTile(
-      leading: const AppCircularImage(
-        image: AppImages.user,
-        padding: 0,
-      ),
+      leading: Obx(() {
+        final networkImage = controller.user.value.profilePicture;
+        final profileImage =
+            networkImage.isNotEmpty ? networkImage : AppImages.user;
+        return controller.ppLoading.value
+            ? const AppShimmerEffect(width: 55, height: 55, radius: 55)
+            : AppCircularImage(
+                image: profileImage,
+                padding: 0,
+                isNetworkImage: networkImage.isNotEmpty);
+      }),
       title: Text(
         controller.user.value.fullName,
         style: Theme.of(context)
