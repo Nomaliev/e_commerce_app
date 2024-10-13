@@ -17,8 +17,6 @@ class AppNavigation extends StatelessWidget {
     final dark = AppHelperFunctions.isDarkMode(context);
     return Scaffold(
       bottomNavigationBar: Obx(() => BottomNavigationBar(
-              showUnselectedLabels: false,
-              showSelectedLabels: false,
               backgroundColor: dark ? AppColors.black : AppColors.light,
               type: BottomNavigationBarType.fixed,
               iconSize: 30,
