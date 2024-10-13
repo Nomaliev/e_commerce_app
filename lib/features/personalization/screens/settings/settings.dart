@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:t_store/common/widgets/appbar/appbar.dart';
 import 'package:t_store/common/widgets/custom_shapes/container/main_header.dart';
@@ -7,6 +8,7 @@ import 'package:t_store/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:t_store/common/widgets/list_tiles/user_profile_tile.dart';
 import 'package:t_store/common/widgets/text/section_heading.dart';
 import 'package:t_store/data/repositories/authentication/authentication_repository.dart';
+import 'package:t_store/features/personalization/controllers/theme_mode_controller.dart';
 import 'package:t_store/features/personalization/screens/address/address.dart';
 import 'package:t_store/features/shop/screens/orders/orders.dart';
 import 'package:t_store/utils/constants/colors.dart';
@@ -17,6 +19,7 @@ class AppProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeModeController=Get.put(ThemeModeController());
     return Scaffold(
       body: SingleChildScrollView(
           child: Column(
@@ -94,21 +97,32 @@ class AppProfile extends StatelessWidget {
                   icon: Iconsax.location,
                   title: 'Geolocation',
                   subTitle: 'Set recommendation based on location',
-                  onTap: () {},
                   trailing: Switch(value: true, onChanged: (value) {}),
                 ),
                 AppSettingsMenuTile(
                   icon: Iconsax.security_user,
                   title: 'Safe Mode',
                   subTitle: 'Search result is safe for all ages',
-                  onTap: () {},
                   trailing: Switch(value: false, onChanged: (value) {}),
+                ),
+                Obx(
+                  ()=> AppSettingsMenuTile(
+                    icon: Iconsax.security_user,
+                    title: 'Dark Mode',
+                    subTitle: "Set app's theme mode dark",
+                    trailing: Switch(value: themeModeController.isDarkMode.value, onChanged: (value) {themeModeController.isDarkMode.value
+                    =!themeModeController.isDarkMode.value;
+                    if (themeModeController.isDarkMode.value==true) {
+                      GetStorage().write('IsDark', true);
+                    }else{
+                      GetStorage().write('IsDark', false);
+                    }}),
+                  ),
                 ),
                 AppSettingsMenuTile(
                   icon: Iconsax.image,
                   title: 'HD Image Quality',
                   subTitle: 'Set image quality to be seen',
-                  onTap: () {},
                   trailing: Switch(value: false, onChanged: (value) {}),
                 ),
                 const SizedBox(height: AppSizes.spaceBtwSections),
