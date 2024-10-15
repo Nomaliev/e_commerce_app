@@ -19,6 +19,8 @@ class AppNavigation extends StatelessWidget {
       bottomNavigationBar: Obx(() => BottomNavigationBar(
               backgroundColor: dark ? AppColors.black : AppColors.light,
               type: BottomNavigationBarType.fixed,
+              showSelectedLabels: false,
+              showUnselectedLabels: false,
               iconSize: 30,
               enableFeedback: false,
               elevation: 0,
