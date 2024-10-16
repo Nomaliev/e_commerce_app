@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:t_store/common/widgets/shimmers/shimmer.dart';
 import 'package:t_store/utils/constants/colors.dart';
-import 'package:t_store/utils/constants/sizes.dart';
 import 'package:t_store/utils/helpers/helper_functions.dart';
 
 class AppCircularImage extends StatelessWidget {
@@ -15,7 +14,7 @@ class AppCircularImage extends StatelessWidget {
     this.backgroundColor,
     this.width = 56,
     this.height = 56,
-    this.padding = AppSizes.sm,
+    this.padding = 0,
   });
   final BoxFit? fit;
   final String image;
